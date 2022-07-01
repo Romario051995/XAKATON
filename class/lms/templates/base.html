@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -8,30 +9,41 @@
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
 </head>
 <body>
-<div class="container">
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a href="{% url 'home' %}" class="navbar-brand" aria-current="page">Главная</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
         <span class="fs-4">LMS</span>
       </a>
       <ul class="nav nav-pills">
-        <li class="nav-item"><a href="{% url 'home' %}" class="nav-link active" aria-current="page">Главная</a></li>
+        <li class="nav-item"></li>
       </ul>
     </header>
-    <ul>
-     {% for i in task %}
-        <div class="alert alert-warning mt-3">
-
-            <h2>{{i.title}}</h2>
-
-            <p>{{i.content}}</p>
-        </div>
-        {% endfor %}
-        </ul>
-  </div>
-<div class="container">
-{% block content %}
-    {% endblock %}
-</div>
+{% block content %}{% endblock %}
 </body>
 </html>
+
