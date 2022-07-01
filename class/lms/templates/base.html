@@ -41,7 +41,12 @@
 
       </ul>
     </div>
-    <a href="{% url 'home' %}" class="navbar-brand" aria-current="page">Вход</a>
+      {% if user.is_authenticated %}
+       <a href="{% url 'logout' %}" class="navbar-brand" aria-current="page">Выход</a>
+{% else %}
+   <a href="{% url 'login' %}" class="navbar-brand" aria-current="page">Вход</a>
+{% endif %}
+
   </div>
 </nav>
 

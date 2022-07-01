@@ -1,11 +1,12 @@
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 
 
 # from .forms import NewsForm
 from .models import *
-
+from .forms import *
 
 # Create your views here.
 
@@ -28,16 +29,24 @@ def task_detail(request, task_id):
 
 
 def log_in(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        return render(request, 'success.html')
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(username=cd['username'], password=cd['password'])
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect("home")
+                else:
+                    return HttpResponse('Disabled account')
+            else:
+                return HttpResponse('Invalid login')
     else:
-        return render(request, 'error.html')
+        form = LoginForm()
+    return render(request, 'login.html', {'form': form})
 
-def logout(request):
+def log_out(request):
     logout(request)
     return render(request, 'task_list.html')
 
