@@ -48,7 +48,7 @@ def log_in(request):
 
 def log_out(request):
     logout(request)
-    return render(request, 'task_list.html')
+    return render(request, 'home.html')
 
 # de
 # f test(request):
