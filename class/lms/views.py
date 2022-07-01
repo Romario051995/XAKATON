@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
 
 
 # from .forms import NewsForm
@@ -26,6 +26,20 @@ def task_detail(request, task_id):
     return render(request, 'task_detail.html', context)
     # return render(request, template_name='news/index.html', context=context)
 
+
+def log_in(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return render(request, 'success.html')
+    else:
+        return render(request, 'error.html')
+
+def logout(request):
+    logout(request)
+    return render(request, 'task_list.html')
 
 # de
 # f test(request):
