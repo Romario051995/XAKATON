@@ -8,14 +8,16 @@ from django.contrib.auth import logout
 from .models import *
 from .forms import *
 
+
 def home(request):
     return render(request, 'home.html')
+
 
 @login_required
 def task_list(request):
     task = Task.objects.order_by('-created_at')
 
-    context = {'task': task }
+    context = {'task': task}
     return render(request, 'task_list.html', context)
     # return render(request, template_name='news/index.html', context=context)
 
@@ -35,7 +37,7 @@ def task_detail(request, task_id):
         form = SolutionForm()
         task = get_object_or_404(Task, id=task_id)
 
-        context = {'task': task, 'form': form }
+        context = {'task': task, 'form': form}
         return render(request, 'task_detail.html', context)
     # return render(request, template_name='news/index.html', context=context)
 
@@ -58,9 +60,11 @@ def log_in(request):
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
+
 def log_out(request):
     logout(request)
     return render(request, 'home.html')
+
 
 @login_required
 def marks(request):

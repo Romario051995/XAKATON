@@ -9,19 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
 </head>
 <body>
-<style>
-      body {
-        background-color: #3366cc; /* Цвет фона веб-страницы */
-      }
-      h1 {
-        background-color: RGB( 255, 245, 133
-        ); /* Цвет фона под заголовком */
-      }
-      p {
-        background-color: #FFFFFF; /* Цвет фона под текстом параграфа */
-        color: blak; /* Цвет текста */
-      }
-    </style>
+
 
 
 <nav class="navbar navbar-expand-lg bg-light">
@@ -38,16 +26,17 @@
           <a class="nav-link active" aria-current="page" href="{% url 'task_list' %}">Тесты</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Результаты тестов</a>
+          <a class="nav-link" href="marks/">Результаты тестов</a>
         </li>
       </ul>
     </div>
        <a href="{% url 'logout' %}" class="navbar-brand" aria-current="page">Выход</a>
 {% else %}
-   <a href="{% url 'login' %}" class="navbar-brand" aria-current="page">Вход</a>
+        <a href="{% url 'login' %}" class="navbar-brand" aria-current="page">Вход</a>
 {% endif %}
 
-  </div>
+    </div>
+
 </nav>
 
 

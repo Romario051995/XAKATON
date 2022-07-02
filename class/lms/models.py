@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
+
 class Task(models.Model):
     title = models.CharField(max_length=100, verbose_name='Заголовок')
     content = models.TextField(blank=True, verbose_name='Задача')
@@ -27,6 +28,7 @@ class Solution(models.Model):
         verbose_name = 'Решение'
         verbose_name_plural = 'Решения'
 
+
 class Mark(models.Model):
     solution = models.ForeignKey(Solution, on_delete=models.CASCADE,verbose_name="Решение")
     mark = models.IntegerField(validators=[
@@ -39,16 +41,4 @@ class Mark(models.Model):
         verbose_name = 'Оценка'
         verbose_name_plural = 'Оценки'
         ordering = ['-mark']
-
-
-
-
-
-
-
-
-
-
-
-
 

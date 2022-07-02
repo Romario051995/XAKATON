@@ -4,17 +4,15 @@
 {% block content %}
 
 <div class="container">
- <p>Средняя {{average}}</p>
+ <h1>Средний балл: {{average}}</h1>
             {% for mark in marks %}
     <div class="alert alert-warning mt-3">
-            <h2>{{mark.mark}} </h2>
-            <h2>{{mark.solution.comment}} </h2>
-            <h2>{{mark.solution.text}} </h2>
+            <h2>Комментарий к выполнению задания: {{mark.solution.comment}} </h2>
+            <h2>Отметкa: {{mark.mark}} </h2>
+            <h2>Ответ студента: {{mark.solution.text}} </h2>
 
   </div>
 
             {% endfor %}
         </div>
-
-</body>
 {% endblock %}

@@ -4,17 +4,38 @@
 {% block title %}home{% endblock %}
 
 {% block content %}
+{% if user.is_authenticated %}
+<body>
 
 <div class="container">
     <ul>
         <div class="alert alert-warning mt-3">
             <a href="{% url 'home' %}" class="navbar-brand" aria-current="page">OVERONE-LMS</a>
         <p>Страница тестирования студентов</p>
+          <p>Ура!! Вы авторизированы</p>
+            <img src="static/images/111.jpg" width="1500px, 400px">
+        </div>
+        </ul>
+  </div>
+
+</body>
+
+{% else %}
+<div class="container">
+    <ul>
+        <div class="alert alert-warning mt-3">
+            <a href="{% url 'home' %}" class="navbar-brand" aria-current="page">OVERONE-LMS</a>
+        <p>Страница тестирования студентов</p>
           <p>Для прохождения тестов требуется авторизация</p>
+            <img src="static/images/222.jpg" width="1500px, 400px">
         </div>
         </ul>
   </div>
 
 
-
+{% endif %}
 {% endblock %}
+
+
+
+
