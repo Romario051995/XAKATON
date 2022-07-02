@@ -65,5 +65,9 @@ def log_out(request):
 @login_required
 def marks(request):
     marks = Mark.objects.filter(solution__student=request.user.id)
-    print(marks)
-    return HttpResponse(marks)
+    marks_values = Mark.objects.filter(solution__student=request.user.id).values_list('mark')
+    marks_list = [i[0] for i in marks_values]
+    average = sum(marks_list)/len(marks_list)
+    context = {'marks': marks, 'average': average}
+    print(context)
+    return render(request, 'marks.html', context)
