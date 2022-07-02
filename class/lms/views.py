@@ -1,18 +1,17 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 
 
-# from .forms import NewsForm
 from .models import *
 from .forms import *
 
-# Create your views here.
 def home(request):
     return render(request, 'home.html')
 
-# @login_required
+@login_required
 def task_list(request):
     task = Task.objects.order_by('-created_at')
 
@@ -21,12 +20,23 @@ def task_list(request):
     # return render(request, template_name='news/index.html', context=context)
 
 
-# @login_required
+@login_required
 def task_detail(request, task_id):
-    task = get_object_or_404(Task, id=task_id)
+    if request.method == 'POST':
+        form = SolutionForm(request.POST)
+        task = get_object_or_404(Task, id=task_id)
 
-    context = {'task': task }
-    return render(request, 'task_detail.html', context)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = request.user
+            Solution.objects.create(student=user, task=task, text=cd['solution'])
+            return redirect("home")
+    else:
+        form = SolutionForm()
+        task = get_object_or_404(Task, id=task_id)
+
+        context = {'task': task, 'form': form }
+        return render(request, 'task_detail.html', context)
     # return render(request, template_name='news/index.html', context=context)
 
 
