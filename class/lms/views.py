@@ -9,6 +9,8 @@ from .models import *
 from .forms import *
 
 # Create your views here.
+def home(request):
+    return render(request, 'home.html')
 
 # @login_required
 def task_list(request):

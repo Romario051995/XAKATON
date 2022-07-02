@@ -32,15 +32,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Тесты</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'task_list' %}">Тесты</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Результаты тестов</a>
         </li>
       </ul>
     </div>
-      {% if user.is_authenticated %}
        <a href="{% url 'logout' %}" class="navbar-brand" aria-current="page">Выход</a>
 {% else %}
    <a href="{% url 'login' %}" class="navbar-brand" aria-current="page">Вход</a>

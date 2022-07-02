@@ -3,11 +3,16 @@
 {% block content %}
 <div class="container">
     <ul>
+     {% for i in task %}
         <div class="alert alert-warning mt-3">
-            <a href="{% url 'home' %}" class="navbar-brand" aria-current="page">OVERONE-LMS</a>
-        <p>Страница тестирования студентов</p>
-          <p>Для прохождения тестов требуется авторизация</p>
+
+            <h2>{{i.title}}</h2>
+
+            <p>{{i.content}}</p>
+<a href="{% url 'task_detail' task_id=i.id %}" class="navbar-brand" aria-current="page">Добавить решение</a>
+
         </div>
+        {% endfor %}
         </ul>
   </div>
 {% endblock %}

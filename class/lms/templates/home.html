@@ -1,43 +1,10 @@
+{% extends "base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{% endblock%}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">
-</head>
-<body>
-<style>
-      body {
-        background-color: #3366cc; /* Цвет фона веб-страницы */
-      }
-      h1 {
-        background-color: RGB( 255, 119, 133
-        ); /* Цвет фона под заголовком */
-      }
-      p {
-        background-color: maroon; /* Цвет фона под текстом параграфа */
-        color: white; /* Цвет текста */
-      }
-    </style>
+{% block title %}home{% endblock %}
 
+{% block content %}
 
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a href="{% url 'home' %}" class="navbar-brand" aria-current="page">OVERONE-LMS</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-      {% if user.is_authenticated %}
-       <a href="{% url 'logout' %}" class="navbar-brand" aria-current="page">Выход</a>
-{% else %}
-   <a href="{% url 'login' %}" class="navbar-brand" aria-current="page">Вход</a>
-{% endif %}
-
-  </div>
-</nav>
 <div class="container">
     <ul>
         <div class="alert alert-warning mt-3">
@@ -50,6 +17,4 @@
 
 
 
-{% block content %}{% endblock %}
-</body>
-</html>
+{% endblock %}
