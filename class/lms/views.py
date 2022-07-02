@@ -62,15 +62,8 @@ def log_out(request):
     logout(request)
     return render(request, 'home.html')
 
-# de
-# f test(request):
-#     return HttpResponse('<h1>Test Page</h1>')
-#
-#
-# def add_news(request):
-#     if request.method == 'POST':
-#         pass
-#     else:
-#         form = NewsForm()
-#     context = {'form': form}
-#     return render(request, 'news/add_news.html', context)
+@login_required
+def marks(request):
+    marks = Mark.objects.filter(solution__student=request.user.id)
+    print(marks)
+    return HttpResponse(marks)
